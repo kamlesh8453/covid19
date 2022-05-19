@@ -7,3 +7,5 @@ Use http link from git hub instead of Eropean Websites. So that you can understo
 deleted some earlier comment and added new comments
 
 From http connector we can load the data.
+
+Payment Added this is new features we need to add.
