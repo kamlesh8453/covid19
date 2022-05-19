@@ -1,5 +1,9 @@
 This is covid19 projects to ingets data from eduac 
 From Blob Strage 
-From http
+
 
 Use http link from git hub instead of Eropean Websites. So that you can understood the changes.
+
+deleted some earlier comment and added new comments
+
+From http connector we can load the data.
