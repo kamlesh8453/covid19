@@ -1,0 +1,87 @@
+{
+	"name": "pl_ingest_covid19_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_covid19_metadata_raw_csv_http",
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceURL": {
+								"value": "@pipeline().parameters.sourseURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_covid19_metadata_raw_csv_dl",
+						"type": "DatasetReference",
+						"parameters": {
+							"sinkFileName": {
+								"value": "@pipeline().parameters.sinkFileName",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"sourseURL": {
+				"type": "string"
+			},
+			"sinkFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-05-17T03:41:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

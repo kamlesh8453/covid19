@@ -1,0 +1,9 @@
+{
+	"name": "health-covid19-adf",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "81ebdb83-0de6-47b7-be8a-3479ba9ad091",
+		"tenantId": "634e7f07-352d-4180-b3a7-fd7c104e42c2"
+	}
+}
